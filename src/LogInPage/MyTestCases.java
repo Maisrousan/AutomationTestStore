@@ -106,27 +106,35 @@ public class MyTestCases {
 		CityInput.sendKeys(City);
 		
 	
+//		Select myselectforcountry = new Select(CountryInput);
+//		myselectforcountry.selectByContainsVisibleText("Jordan");
+		
+		
+		int sizeofcountryoptions = CountryInput.findElements(By.tagName("option")).size();
+		
 		Select myselectforcountry = new Select(CountryInput);
-		myselectforcountry.selectByContainsVisibleText("Jordan");
+		int randomcountryindex = rand.nextInt(1,sizeofcountryoptions);
+		myselectforcountry.selectByIndex(randomcountryindex);
+		
 		
 		Thread.sleep(1000);
 		
 		
 		
 		
-		int sizeofoptions = StateInput.findElements(By.tagName("option")).size();
+		int sizeofstateoptions = StateInput.findElements(By.tagName("option")).size();
 
 		
 		
 		
+
+//		Select myselectforstate = new Select(StateInput);
+//	 	int randomstateindex = rand.nextInt(1 ,sizeofstateoptions);
+//	myselectforstate.selectByValue("1705");		
 		
-		Select myselectforstate = new Select(StateInput);
-	 	int randomstateindex = rand.nextInt(1 ,sizeofoptions);
-	myselectforstate.selectByValue("1705");		
-		
-// 	Select myselectforstate = new Select(StateInput);
-// 	int randomstateindex = rand.nextInt(1 ,sizeofoptions);
-//	myselectforstate.selectByIndex(randomstateindex);		
+ 	Select myselectforstate = new Select(StateInput);
+	int randomstateindex = rand.nextInt(1 ,sizeofstateoptions);
+	myselectforstate.selectByIndex(randomstateindex);		
 		
 		
 		
@@ -135,7 +143,7 @@ public class MyTestCases {
 		PasswordInput.sendKeys(Password);
 		PasswordConfirmInput.sendKeys(Password);
 		Agreebox.click();
-		ContinueButton.click();
+		//ContinueButton.click();
 	}
 
 }
