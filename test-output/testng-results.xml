@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="3" total="5" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-07-07T14:35:48 EET" name="Default suite" finished-at="2025-07-07T14:35:58 EET" duration-ms="10408">
+  <suite started-at="2025-07-11T16:34:51 EET" name="Default suite" finished-at="2025-07-11T16:35:02 EET" duration-ms="10672">
     <groups>
     </groups>
-    <test started-at="2025-07-07T14:35:48 EET" name="Default test" finished-at="2025-07-07T14:35:58 EET" duration-ms="10408">
+    <test started-at="2025-07-11T16:34:51 EET" name="Default test" finished-at="2025-07-11T16:35:02 EET" duration-ms="10672">
       <class name="LogInPage.MyTestCases">
-        <test-method is-config="true" signature="MySetUp()[pri:0, instance:LogInPage.MyTestCases@65fe9e33]" started-at="2025-07-07T14:35:48 EET" name="MySetUp" finished-at="2025-07-07T14:35:55 EET" duration-ms="6461" status="PASS">
+        <test-method is-config="true" signature="MySetUp()[pri:0, instance:LogInPage.MyTestCases@3724af13]" started-at="2025-07-11T16:34:51 EET" name="MySetUp" finished-at="2025-07-11T16:34:53 EET" duration-ms="2308" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MySetUp -->
-        <test-method signature="Signup()[pri:1, instance:LogInPage.MyTestCases@65fe9e33]" started-at="2025-07-07T14:35:55 EET" name="Signup" finished-at="2025-07-07T14:35:58 EET" duration-ms="3844" status="PASS">
+        <test-method signature="Availability()[pri:4, instance:LogInPage.MyTestCases@3724af13]" started-at="2025-07-11T16:34:53 EET" name="Availability" finished-at="2025-07-11T16:35:00 EET" duration-ms="6586" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Signup -->
+        </test-method> <!-- Availability -->
+        <test-method signature="AddToCart()[pri:5, instance:LogInPage.MyTestCases@3724af13]" started-at="2025-07-11T16:35:00 EET" name="AddToCart" finished-at="2025-07-11T16:35:02 EET" duration-ms="1669" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AddToCart -->
       </class> <!-- LogInPage.MyTestCases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

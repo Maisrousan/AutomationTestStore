@@ -1,5 +1,8 @@
 package LogInPage;
 
+import java.awt.print.PrinterIOException;
+import java.net.URL;
+import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -14,36 +17,31 @@ import org.testng.annotations.Test;
 
 public class MyTestCases {
 
-	
-	
-	private static final String Threed = null;
 	WebDriver driver = new ChromeDriver();
-	String theURL = "https://automationteststore.com/" ;
-	String SignupPage = "https://automationteststore.com/index.php?rt=account/create" ; 
+	String theURL = "https://automationteststore.com/";
+	String SignupPage = "https://automationteststore.com/index.php?rt=account/create";
 	Random rand = new Random();
-	
-	
-	@BeforeTest 
-	public void MySetUp () {
-		
+
+	String TheUserName;
+
+	String ThePassword = "Nn0000//";
+
+	@BeforeTest
+	public void MySetUp() {
+
 		driver.get(theURL);
 		driver.manage().window().maximize();
-		
-		
+
 	}
-	
-	@Test (priority= 1)
-	
-	public void Signup () throws InterruptedException {
-		
+
+	@Test(priority = 1, enabled = false)
+
+	public void Signup() throws InterruptedException {
+
 		driver.navigate().to(SignupPage);
-		
-		
-		
-	
-		
-		//Elements 
-		WebElement FirstNamesInput=driver.findElement(By.xpath("//input[@id='AccountFrm_firstname']"));
+
+		// Elements
+		WebElement FirstNamesInput = driver.findElement(By.xpath("//input[@id='AccountFrm_firstname']"));
 		WebElement LastNameInput = driver.findElement(By.xpath("//input[@id='AccountFrm_lastname']"));
 		WebElement EmailInput = driver.findElement(By.id("AccountFrm_email"));
 		WebElement TelephoneInput = driver.findElement(By.id("AccountFrm_telephone"));
@@ -61,96 +59,214 @@ public class MyTestCases {
 		WebElement Agreebox = driver.findElement(By.id("AccountFrm_agree"));
 		WebElement ContinueButton = driver.findElement(By.cssSelector(".btn.btn-orange.pull-right.lock-on-click"));
 
+		// Data
 
-		//Data
-		
-		String[] FirstNames = {"Mais" , "Noor" , "Yaqout" , "Tuqa" ,"Wafaa" ,"Haifa"};
+		String[] FirstNames = { "Mais", "Noor", "Yaqout", "Tuqa", "Wafaa", "Haifa" };
 		int randomIndexForFirstName = rand.nextInt(FirstNames.length);
 		String randomFirstName = FirstNames[randomIndexForFirstName];
-		
-		
-		
-	    String [] LastNames = {"Saif" , "Basel"};
-	    int randomIndexForLastName = rand.nextInt(LastNames.length);
-	    String randomLastName = LastNames[randomIndexForLastName];
-	    
-	    int randomNumberForEmail = rand.nextInt(8000);
-	    
-	    
-	    String Email = randomFirstName + randomLastName + randomNumberForEmail + "@gmail.com";
-	    String Telephone = "87987638";
-	    String Fax = "mm99";
-	    String Company = "freema";
-	    String Address1 = "Irbid" ;
-	    String Address2 = "Irbid"; 
-	    String City ="Irbid";
-	    String State = "";
-	    String ZIPCode="0000";
-	    String Country ="Irbid";
-	    String LoginName= randomFirstName+randomLastName+ randomNumberForEmail ;
-	    String Password ="Nn0000//";
-	  
-	    
-	    
-		
-		
-		//Actions
+
+		String[] LastNames = { "Saif", "Basel" };
+		int randomIndexForLastName = rand.nextInt(LastNames.length);
+		String randomLastName = LastNames[randomIndexForLastName];
+
+		int randomNumberForEmail = rand.nextInt(8000);
+
+		String Email = randomFirstName + randomLastName + randomNumberForEmail + "@gmail.com";
+		String Telephone = "87987638";
+		String Fax = "mm99";
+		String Company = "freema";
+		String Address1 = "Irbid";
+		String Address2 = "Irbid";
+		String City = "Irbid";
+		String ZIPCode = "0000";
+		String Country = "Irbid";
+		String LoginName = TheUserName;
+
+		// Actions
+		TheUserName = randomFirstName + randomLastName + randomNumberForEmail;
+
 		FirstNamesInput.sendKeys(randomFirstName);
 		LastNameInput.sendKeys(randomLastName);
 		EmailInput.sendKeys(Email);
 		TelephoneInput.sendKeys(Telephone);
 		FaxInput.sendKeys(Fax);
-		CompanyInput.sendKeys(Country);
+		CompanyInput.sendKeys(Company);
 		Address1Input.sendKeys(Address1);
 		Address2Input.sendKeys(Address2);
 		CityInput.sendKeys(City);
-		
-	
+
 //		Select myselectforcountry = new Select(CountryInput);
 //		myselectforcountry.selectByContainsVisibleText("Jordan");
-		
-		
-		int sizeofcountryoptions = CountryInput.findElements(By.tagName("option")).size();
-		
-		Select myselectforcountry = new Select(CountryInput);
-		int randomcountryindex = rand.nextInt(1,sizeofcountryoptions);
-		myselectforcountry.selectByIndex(randomcountryindex);
-		
-		
-		Thread.sleep(1000);
-		
-		
-		
-		
-		int sizeofstateoptions = StateInput.findElements(By.tagName("option")).size();
 
-		
-		
-		
+		int sizeofcountryoptions = CountryInput.findElements(By.tagName("option")).size();
+
+		Select myselectforcountry = new Select(CountryInput);
+		int randomcountryindex = rand.nextInt(1, sizeofcountryoptions);
+		myselectforcountry.selectByIndex(randomcountryindex);
+
+		Thread.sleep(1000);
+
+		int sizeofstateoptions = StateInput.findElements(By.tagName("option")).size();
 
 //		Select myselectforstate = new Select(StateInput);
 //	 	int randomstateindex = rand.nextInt(1 ,sizeofstateoptions);
 //	myselectforstate.selectByValue("1705");		
-		
- 	Select myselectforstate = new Select(StateInput);
-	int randomstateindex = rand.nextInt(1 ,sizeofstateoptions);
-	myselectforstate.selectByIndex(randomstateindex);		
-		
-		
-		
+
+		Select myselectforstate = new Select(StateInput);
+		int randomstateindex = rand.nextInt(1, sizeofstateoptions);
+		myselectforstate.selectByIndex(randomstateindex);
+
 		ZIPCodeInput.sendKeys(ZIPCode);
-		LoginNameInput.sendKeys(LoginName);
-		PasswordInput.sendKeys(Password);
-		PasswordConfirmInput.sendKeys(Password);
+		LoginNameInput.sendKeys(TheUserName);
+		PasswordInput.sendKeys(ThePassword);
+		PasswordConfirmInput.sendKeys(ThePassword);
 		Agreebox.click();
-		//ContinueButton.click();
+		ContinueButton.click();
+
+		Thread.sleep(3000);
+
 	}
 
+	// https://automationteststore.com/index.php?rt=account/logout
+
+	@Test(priority = 2, enabled = false)
+
+	public void Logout() {
+
+		WebElement LogoutButton = driver.findElement(By.linkText("Logoff"));
+
+		LogoutButton.click();
+
+		WebElement ContinueButton = driver.findElement(By.cssSelector(".btn.btn-default.mr10"));
+		ContinueButton.click();
+
+	}
+
+	@Test(priority = 3, enabled = false)
+
+	public void Login() {
+
+		WebElement loginButton = driver.findElement(By.partialLinkText("Login or "));
+		loginButton.click();
+
+		WebElement LoginInput = driver.findElement(By.id("loginFrm_loginname"));
+		LoginInput.sendKeys(TheUserName);
+
+		WebElement PasswordInput = driver.findElement(By.id("loginFrm_password"));
+		PasswordInput.sendKeys(ThePassword);
+
+		WebElement LoginPress = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
+		LoginPress.click();
+
+	}
+
+//	 
+//	 @Test (priority = 4 , invocationCount=20)
+//	 
+//	 public void AddToCart () throws InterruptedException {
+//		 
+//		 driver.navigate().to(theURL);
+//		 
+//		 Thread.sleep(3000);
+//		 
+////		 WebElement theIteamContainer = driver.findElement(By.cssSelector("section[id='latest'] div[class='container-fluid']"));
+////		 int NumberOfItems = driver.findElement(By.cssSelector(".thumbnails.list-inline")).findElements(By.tagName("div")).size();
+////		
+////		 
+////		 System.out.println(NumberOfItems);
+////		 
+//		 List <WebElement> TheListOfItemsize = driver.findElements(By.className("prdocutname"));
+//		 
+//		 int TotalNumberOfItems = TheListOfItemsize.size();
+//		 System.out.println(TotalNumberOfItems);
+//		 int RandomItemIndex = rand.nextInt(TotalNumberOfItems);
+//		 TheListOfItemsize.get(RandomItemIndex).click();
+//		 if (driver.getPageSource().contains("Out of Stock")){
+//			 driver.navigate().back();
+//			 
+//			 System.out.println("Sorry the item out of the stock");
+//			 
+//			 
+//		 }//else {
+//			 
+//			// System.out.println("The item is available");
+//
+//			 
+//		 //}
+//		 
+//		 
+//	 }	 
+//	 
+//	 
+
+	@Test(priority = 4)
+
+	public void Availability() throws InterruptedException {
+
+		driver.navigate().to(theURL);
+
+		Thread.sleep(3000);
+
+//		 WebElement theIteamContainer = driver.findElement(By.cssSelector("section[id='latest'] div[class='container-fluid']"));
+//		 int NumberOfItems = driver.findElement(By.cssSelector(".thumbnails.list-inline")).findElements(By.tagName("div")).size();
+//		
+//		 
+//		 System.out.println(NumberOfItems);
+//		 
+		List<WebElement> TheListOfItemsize = driver.findElements(By.className("prdocutname"));
+
+		int TotalNumberOfItems = TheListOfItemsize.size();
+		//System.out.println(TotalNumberOfItems);
+		int RandomItemIndex = rand.nextInt(4);
+		TheListOfItemsize.get(RandomItemIndex).click();
+		if (driver.getPageSource().contains("Out of Stock")) {
+			driver.navigate().back();
+
+			System.out.println("Sorry the item out of the stock");
+
+		}
+
+	}
+
+	@Test(priority = 5)
+
+	public void AddToCart() {
+
+		WebElement QtyInput = driver.findElement(By.id("product_quantity"));
+
+		WebElement AddToCart = driver.findElement(By.xpath("//a[normalize-space()='Add to Cart']"));
+
+		WebElement UnitPrice = driver.findElement(By.xpath("//div[@class='productfilneprice']"));
+
+		QtyInput.clear();
+
+		int RandomQtynumber = rand.nextInt(2, 10);
+
+		QtyInput.sendKeys(String.valueOf(RandomQtynumber));
+
+		String Unitpricetext = UnitPrice.getText();
+		String CleanUnitprice = Unitpricetext.replace("$", "");
+
+		Double Unitpricedo = Double.parseDouble(CleanUnitprice);
+		Double TotalPrice2 = Unitpricedo * RandomQtynumber;
+
+		AddToCart.click();
+
+		WebElement TotalPrice = driver.findElement(By.cssSelector("span[class='bold totalamout']"));
+
+		String TotalPricetext = TotalPrice.getText();
+		String TotalPriceSt = TotalPricetext.replace("$", "");
+
+		Double Totaldo = Double.parseDouble(TotalPriceSt);
+
+		Double TotalPricewithShipping = 2.00 + TotalPrice2;
+		if (Math.abs(Totaldo - TotalPricewithShipping) < 0.01) {
+
+			System.out.println("The test is pass");
+
+		}
+
+	}
+
+
 }
-	
-
-	
-	
-	
-	
-
