@@ -1,5 +1,7 @@
 package LogInPage;
 
+import static org.testng.Assert.assertEquals;
+
 import java.awt.print.PrinterIOException;
 import java.net.URL;
 import java.util.List;
@@ -192,7 +194,7 @@ public class MyTestCases {
 	}
 
 //	 
-	@Test(priority = 4, invocationCount = 1, enabled = false)
+	@Test(priority = 4, invocationCount = 1, enabled = true)
 
 	public void AddToCart1() throws InterruptedException {
 
@@ -231,7 +233,12 @@ public class MyTestCases {
 			AddCartButton.click();
 
 			WebElement CheckOutButton = driver.findElement(By.linkText("Checkout"));
-			CheckOutButton.click();
+			
+			boolean ActualResult = driver.getPageSource().contains("Shopping Cart");
+			Assert.assertEquals(ActualResult, true ,"this is to test add to cart");
+			
+			
+			//CheckOutButton.click();
 
 		}
 
