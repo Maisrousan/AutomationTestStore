@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -23,6 +24,7 @@ public class MyTestCases {
 	Random rand = new Random();
 
 	String TheUserName;
+	String FirstName ; 
 
 	String ThePassword = "Nn0000//";
 
@@ -34,11 +36,13 @@ public class MyTestCases {
 
 	}
 
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 
 	public void Signup() throws InterruptedException {
 
 		driver.navigate().to(SignupPage);
+
+		String ConfirmationMessage = "Your Account Has Been Created!";
 
 		// Elements
 		WebElement FirstNamesInput = driver.findElement(By.xpath("//input[@id='AccountFrm_firstname']"));
@@ -64,6 +68,7 @@ public class MyTestCases {
 		String[] FirstNames = { "Mais", "Noor", "Yaqout", "Tuqa", "Wafaa", "Haifa" };
 		int randomIndexForFirstName = rand.nextInt(FirstNames.length);
 		String randomFirstName = FirstNames[randomIndexForFirstName];
+		FirstName = randomFirstName;
 
 		String[] LastNames = { "Saif", "Basel" };
 		int randomIndexForLastName = rand.nextInt(LastNames.length);
@@ -125,26 +130,41 @@ public class MyTestCases {
 
 		Thread.sleep(3000);
 
+		boolean ActualResult = driver.getPageSource().contains(ConfirmationMessage);
+
+		Assert.assertEquals(ActualResult, true, "this is to test that account has been created");
 	}
 
 	// https://automationteststore.com/index.php?rt=account/logout
 
-	@Test(priority = 2, enabled = false)
+	@Test(priority = 2, enabled = true)
 
 	public void Logout() {
+
+		String ConfirmationMessage = "You have been logged off your account";
 
 		WebElement LogoutButton = driver.findElement(By.linkText("Logoff"));
 
 		LogoutButton.click();
 
 		WebElement ContinueButton = driver.findElement(By.cssSelector(".btn.btn-default.mr10"));
+	
+		boolean ActualResult1 = driver.getPageSource().contains(ConfirmationMessage);
+		Assert.assertEquals(ActualResult1, true , "this is to test that account has been logged");
+		
+		
+		//optional
+		boolean ActualResult2 = driver.getCurrentUrl().contains("https://automationteststore.com/index.php?rt=account/logout");
+		boolean ExpectedResult2 = true ;
+		Assert.assertEquals(ActualResult2 , ExpectedResult2 , "this is to test that account has been logged");
+
 		ContinueButton.click();
 
 	}
 
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 3, enabled = true)
 
-	public void Login() {
+	public void Login() throws InterruptedException {
 
 		WebElement loginButton = driver.findElement(By.partialLinkText("Login or "));
 		loginButton.click();
@@ -157,49 +177,69 @@ public class MyTestCases {
 
 		WebElement LoginPress = driver.findElement(By.xpath("//button[normalize-space()='Login']"));
 		LoginPress.click();
+		
+		Thread.sleep(1000);
+
+		boolean ActualResult = driver.findElement(By.id("customernav")).getText().contains(FirstName);
+		Assert.assertEquals(ActualResult, true , "this is to test that account login ");
+		
+		//optional 
+
+		String ActualResult2 = driver.findElement(By.id("customernav")).getText();
+		
+		Assert.assertEquals(ActualResult2, "Welcome back "+ FirstName , "this is to test that account login ");
+		
+	}
+
+//	 
+	@Test(priority = 4, invocationCount = 1, enabled = false)
+
+	public void AddToCart1() throws InterruptedException {
+
+		driver.navigate().to(theURL);
+
+		Thread.sleep(3000);
+
+//		 WebElement theIteamContainer = driver.findElement(By.cssSelector("section[id='latest'] div[class='container-fluid']"));
+//		 int NumberOfItems = driver.findElement(By.cssSelector(".thumbnails.list-inline")).findElements(By.tagName("div")).size();
+//		
+//		 
+//		 System.out.println(NumberOfItems);
+//		 
+		List<WebElement> TheListOfItemsize = driver.findElements(By.className("prdocutname"));
+
+		int TotalNumberOfItems = TheListOfItemsize.size();
+		System.out.println(TotalNumberOfItems);
+		int RandomItemIndex = rand.nextInt(TotalNumberOfItems);
+		TheListOfItemsize.get(RandomItemIndex).click();
+
+		WebElement AddCartButton = driver.findElement(By.className("productpagecart"));
+
+		if (AddCartButton.getText().equals("Out of Stock")) {
+			driver.navigate().back();
+
+			System.out.println("Sorry the item out of the stock");
+
+		} else {
+
+			// System.out.println("The item is available");
+			if (driver.getCurrentUrl().contains("product_id=116")) {
+
+				driver.findElement(By.xpath("//input[@id='option344747']")).click();
+			}
+
+			AddCartButton.click();
+
+			WebElement CheckOutButton = driver.findElement(By.linkText("Checkout"));
+			CheckOutButton.click();
+
+		}
 
 	}
 
 //	 
-//	 @Test (priority = 4 , invocationCount=20)
-//	 
-//	 public void AddToCart () throws InterruptedException {
-//		 
-//		 driver.navigate().to(theURL);
-//		 
-//		 Thread.sleep(3000);
-//		 
-////		 WebElement theIteamContainer = driver.findElement(By.cssSelector("section[id='latest'] div[class='container-fluid']"));
-////		 int NumberOfItems = driver.findElement(By.cssSelector(".thumbnails.list-inline")).findElements(By.tagName("div")).size();
-////		
-////		 
-////		 System.out.println(NumberOfItems);
-////		 
-//		 List <WebElement> TheListOfItemsize = driver.findElements(By.className("prdocutname"));
-//		 
-//		 int TotalNumberOfItems = TheListOfItemsize.size();
-//		 System.out.println(TotalNumberOfItems);
-//		 int RandomItemIndex = rand.nextInt(TotalNumberOfItems);
-//		 TheListOfItemsize.get(RandomItemIndex).click();
-//		 if (driver.getPageSource().contains("Out of Stock")){
-//			 driver.navigate().back();
-//			 
-//			 System.out.println("Sorry the item out of the stock");
-//			 
-//			 
-//		 }//else {
-//			 
-//			// System.out.println("The item is available");
-//
-//			 
-//		 //}
-//		 
-//		 
-//	 }	 
-//	 
-//	 
 
-	@Test(priority = 4)
+	@Test(priority = 4, enabled = false)
 
 	public void Availability() throws InterruptedException {
 
@@ -216,7 +256,7 @@ public class MyTestCases {
 		List<WebElement> TheListOfItemsize = driver.findElements(By.className("prdocutname"));
 
 		int TotalNumberOfItems = TheListOfItemsize.size();
-		//System.out.println(TotalNumberOfItems);
+		// System.out.println(TotalNumberOfItems);
 		int RandomItemIndex = rand.nextInt(4);
 		TheListOfItemsize.get(RandomItemIndex).click();
 		if (driver.getPageSource().contains("Out of Stock")) {
@@ -228,7 +268,7 @@ public class MyTestCases {
 
 	}
 
-	@Test(priority = 5)
+	@Test(priority = 5, enabled = false)
 
 	public void AddToCart() {
 
@@ -267,6 +307,5 @@ public class MyTestCases {
 		}
 
 	}
-
 
 }

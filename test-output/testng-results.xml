@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="3" total="5" passed="2" failed="0" skipped="0">
+<testng-results ignored="3" total="6" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-07-11T16:34:51 EET" name="Default suite" finished-at="2025-07-11T16:35:02 EET" duration-ms="10672">
+  <suite started-at="2025-07-15T13:50:57 EET" name="Default suite" finished-at="2025-07-15T13:51:22 EET" duration-ms="24964">
     <groups>
     </groups>
-    <test started-at="2025-07-11T16:34:51 EET" name="Default test" finished-at="2025-07-11T16:35:02 EET" duration-ms="10672">
+    <test started-at="2025-07-15T13:50:57 EET" name="Default test" finished-at="2025-07-15T13:51:22 EET" duration-ms="24964">
       <class name="LogInPage.MyTestCases">
-        <test-method is-config="true" signature="MySetUp()[pri:0, instance:LogInPage.MyTestCases@3724af13]" started-at="2025-07-11T16:34:51 EET" name="MySetUp" finished-at="2025-07-11T16:34:53 EET" duration-ms="2308" status="PASS">
+        <test-method is-config="true" signature="MySetUp()[pri:0, instance:LogInPage.MyTestCases@6b53bcc2]" started-at="2025-07-15T13:50:57 EET" name="MySetUp" finished-at="2025-07-15T13:51:00 EET" duration-ms="2819" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MySetUp -->
-        <test-method signature="Availability()[pri:4, instance:LogInPage.MyTestCases@3724af13]" started-at="2025-07-11T16:34:53 EET" name="Availability" finished-at="2025-07-11T16:35:00 EET" duration-ms="6586" status="PASS">
+        <test-method signature="Signup()[pri:1, instance:LogInPage.MyTestCases@6b53bcc2]" started-at="2025-07-15T13:51:00 EET" name="Signup" finished-at="2025-07-15T13:51:12 EET" duration-ms="12025" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Availability -->
-        <test-method signature="AddToCart()[pri:5, instance:LogInPage.MyTestCases@3724af13]" started-at="2025-07-11T16:35:00 EET" name="AddToCart" finished-at="2025-07-11T16:35:02 EET" duration-ms="1669" status="PASS">
+        </test-method> <!-- Signup -->
+        <test-method signature="Logout()[pri:2, instance:LogInPage.MyTestCases@6b53bcc2]" started-at="2025-07-15T13:51:12 EET" name="Logout" finished-at="2025-07-15T13:51:16 EET" duration-ms="3479" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- AddToCart -->
+        </test-method> <!-- Logout -->
+        <test-method signature="Login()[pri:3, instance:LogInPage.MyTestCases@6b53bcc2]" started-at="2025-07-15T13:51:16 EET" name="Login" finished-at="2025-07-15T13:51:22 EET" duration-ms="6502" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Login -->
       </class> <!-- LogInPage.MyTestCases -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

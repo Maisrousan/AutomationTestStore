@@ -5,8 +5,8 @@
     <classes>
       <class name="LogInPage.MyTestCases">
         <methods>
+          <include name="Login"/>
           <include name="MySetUp"/>
-          <include name="AddToCart"/>
         </methods>
       </class> <!-- LogInPage.MyTestCases -->
     </classes>
